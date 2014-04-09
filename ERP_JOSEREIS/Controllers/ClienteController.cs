@@ -36,16 +36,6 @@ namespace ERP_JOSEREIS.Controllers
             return View(cliente);
         }
 
-        public ActionResult DetailsPF(int id = 0)
-        {
-            PessoaFisica cliente = db.PessoasFisicas.Find(id);
-            if (cliente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cliente);
-        }
-
         //
         // GET: /Cliente/Create
 
