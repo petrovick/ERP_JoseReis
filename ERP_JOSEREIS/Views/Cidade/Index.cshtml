@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ERP_JOSEREIS.Models.Cidade>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="20">
+    <tr>
+        <th>
+            Cidade
+        </th>
+        <th>
+            Estado
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdCidade }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdCidade }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdCidade })
+            </td>
+        </tr>
+    }
+
+
+</table>

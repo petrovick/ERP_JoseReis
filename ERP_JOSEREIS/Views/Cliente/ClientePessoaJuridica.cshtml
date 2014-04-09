@@ -1,0 +1,103 @@
+﻿@model ERP_JOSEREIS.ViewModels.ClienteViewModel
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+@using (Html.BeginForm("EditPJ", "Cliente"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PessoaJuridica</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.CNPJ)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.CNPJ)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.CNPJ)
+        </div>
+
+        @Html.HiddenFor(model => model.PessoaFisica.IdPessoa)
+        @Html.HiddenFor(model => model.Cliente.IdCliente)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.Nome)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.DataCadastro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.DataCadastro)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.DataCadastro)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.Rua)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.Rua)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.Rua)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.Numero)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.Numero)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.Bairro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.Bairro)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.Bairro)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.CEP)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.CEP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.TelefoneComercial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.TelefoneComercial)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.TelefoneComercial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.TelefoneResidencial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.TelefoneResidencial)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.TelefoneResidencial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cliente.Preferencial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cliente.Preferencial)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneResidencial)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
