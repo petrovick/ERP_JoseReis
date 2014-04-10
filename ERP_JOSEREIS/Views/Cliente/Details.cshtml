@@ -1,15 +1,19 @@
-﻿@model ERP_JOSEREIS.Models.Cliente
+﻿@model ERP_JOSEREIS.ViewModels.ClienteViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>Cliente</legend>
-</fieldset>
+<h2>Edit</h2>
+@if (Model.PessoaFisica != null)
+{
+    @Html.Partial("ClientePessoaFisicaDetalhes")
+}
+else
+{
+    @Html.Partial("ClientePessoaJuridica")
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.IdCliente }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Cliente.IdCliente }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

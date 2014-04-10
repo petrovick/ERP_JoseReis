@@ -33,6 +33,35 @@ namespace ERP_JOSEREIS.Controllers
             {
                 return HttpNotFound();
             }
+            PessoaFisica pf = db.PessoasFisicas.Find(id);
+            ClienteViewModel clienteVM;
+            if (pf != null)
+                clienteVM = new ClienteViewModel(cliente, pf);
+            else
+            {
+                PessoaJuridica pj = db.PessoasJuridicas.Find(id);
+                clienteVM = new ClienteViewModel(cliente, pj);
+            }
+            return View(clienteVM);
+        }
+
+        public ActionResult DetailsPF()
+        {
+            IEnumerable<PessoaFisica> cliente = db.PessoasFisicas;
+            if (cliente == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cliente);
+        }
+
+        public ActionResult DetailsPJ()
+        {
+            IEnumerable<PessoaJuridica> cliente = db.PessoasJuridicas;
+            if (cliente == null)
+            {
+                return HttpNotFound();
+            }
             return View(cliente);
         }
 
@@ -110,7 +139,7 @@ namespace ERP_JOSEREIS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]  
-        public ActionResult EditPF(Cliente cliente, PessoaFisica pessoaFisica)
+        public ActionResult Edit(Cliente cliente, PessoaFisica pessoaFisica)
         {
             if (ModelState.IsValid)//Se nao tem nenhum erro na hora de salvar
             {
@@ -126,10 +155,11 @@ namespace ERP_JOSEREIS.Controllers
                     db.Clientes.Add(cliente);
                     db.PessoasFisicas.Add(pessoaFisica);
                     db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
             }
             ClienteViewModel clienteVM = new ClienteViewModel(cliente, pessoaFisica);
-            return View("EditPF", clienteVM);
+            return View("Edit", clienteVM);
         }
 
 
@@ -167,7 +197,7 @@ namespace ERP_JOSEREIS.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Cliente cliente = db.Clientes.Find(id);
+            Cliente cliente = db.Clientes.Include(c => c.Pessoa).Single(c => c.IdCliente == id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -175,6 +205,7 @@ namespace ERP_JOSEREIS.Controllers
             return View(cliente);
         }
 
+        
         //
         // POST: /Cliente/Delete/5
 

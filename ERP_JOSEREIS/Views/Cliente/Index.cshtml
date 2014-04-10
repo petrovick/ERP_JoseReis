@@ -10,14 +10,18 @@
     @Html.ActionLink("Nova Cliente PF", "CreatePF")
     @Html.ActionLink("Nova Cliente PJ", "CreatePj")
     @Html.ActionLink("Details Cliente PF", "DetailsPF")
+    @Html.ActionLink("Details Cliente PJ", "DetailsPJ")
 </p>
 <table>
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Nome)*@
+            @Html.DisplayNameFor(model => model.IdCliente)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Sigla)*@
+            @Html.DisplayNameFor(model => model.Pessoa.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pessoa.Cidade)
         </th>
         <th></th>
     </tr>
@@ -29,10 +33,10 @@
                 @Html.DisplayFor(modelItem => item.IdCliente)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pessoa.Cidade)
+                @Html.DisplayFor(modelItem => item.Pessoa.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pessoa.Nome)
+                @Html.DisplayFor(modelItem => item.Pessoa.Cidade)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdCliente }) |
