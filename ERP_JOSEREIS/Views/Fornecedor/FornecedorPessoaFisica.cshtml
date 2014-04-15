@@ -1,0 +1,98 @@
+﻿@model ERP_JOSEREIS.ViewModels.FornecedorViewModel
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("Edit", "Fornecedor")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>FornecedorViewModel</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.Bairro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Bairro)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.CEP)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.CPF)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.DataCadastro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.DataCadastro)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.DataNascimento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.DataNascimento)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Nome)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Numero)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.RG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.RG)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.Rua)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Rua)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.Rua)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.TelefoneCelular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.TelefoneCelular)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.TelefoneComercial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.TelefoneComercial)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pessoaFisica.TelefoneResidencial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.TelefoneResidencial)
+        </div>        
+        @Html.HiddenFor(model => model.pessoaFisica.IdPessoa)
+        @Html.HiddenFor(model => model.fornecedor.IdFornecedor)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+</fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

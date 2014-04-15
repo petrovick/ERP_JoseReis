@@ -242,6 +242,6 @@ C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\bin\System.Web.Web
 C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\bin\WebMatrix.Data.xml
 C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\bin\WebMatrix.WebData.xml
-C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\obj\Debug\ERP_JOSEREIS.csprojResolveAssemblyReference.cache
 C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\obj\Debug\ERP_JOSEREIS.dll
 C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\obj\Debug\ERP_JOSEREIS.pdb
+C:\Users\Petrovick\Documents\GitHub\ERP_JoseReis\ERP_JOSEREIS\obj\Debug\ERP_JOSEREIS.csprojResolveAssemblyReference.cache

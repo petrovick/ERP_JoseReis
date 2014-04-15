@@ -1,0 +1,78 @@
+﻿@model ERP_JOSEREIS.ViewModels.FornecedorViewModel
+
+@{
+    ViewBag.Title = "CreatePJ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreatePJ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>FornecedorViewModel</legend>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Bairro)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.Bairro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.CEP)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.CEP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Cidade)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.Cidade)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.CPF)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.DataCadastro)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.DataCadastro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Nome)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.RG)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.RG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Numero)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.Rua)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.Rua)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.TelefoneComercial)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.TelefoneComercial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.TelefoneCelular)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.TelefoneCelular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pessoaFisica.TelefoneResidencial)
+            @Html.ValidationMessageFor(model => model.pessoaFisica.TelefoneResidencial)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ERP_JOSEREIS.Models.PessoaFisica>
+<p>
+    @Html.ActionLink("Nova Cliente PF", "CreatePF")
+    @Html.ActionLink("Nova Cliente PJ", "CreatePj")
+</p>
+<table>
+    <tr></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefoneCelular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefoneComercial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefoneResidencial)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdPessoa }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdPessoa}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdPessoa})
+            </td>
+        </tr>
+    }
+</table>

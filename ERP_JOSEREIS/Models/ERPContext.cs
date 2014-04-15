@@ -21,6 +21,7 @@ namespace ERP_JOSEREIS.Models
         public DbSet<PessoaJuridica> PessoasJuridicas { get; set; }
         public DbSet<Movimento> Movimentos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Fornecedor> Fornecedores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

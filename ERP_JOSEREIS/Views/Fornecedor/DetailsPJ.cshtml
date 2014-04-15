@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ERP_JOSEREIS.ViewModels.FornecedorViewModel>
+<p>
+    @Html.ActionLink("Nova Cliente PF", "CreatePF")
+    @Html.ActionLink("Nova Cliente PJ", "CreatePj")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNPJ)
+            </td>
+            <td>
+                @Html.ActionLink("EditPJ", "EditPJ", new { id = item.IdPessoa }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdPessoa }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdPessoa })
+            </td>
+        </tr>
+    }
+
+</table>
