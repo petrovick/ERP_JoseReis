@@ -135,7 +135,7 @@ namespace ERP_JOSEREIS.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            FornecedorViewModel fornecedorVM = new FornecedorViewModel(fornecedor, pessoaJuridica);
+            FornecedorViewModel fornecedorVM = new FornecedorViewModel(fornecedor, pessoaFisica);
             return View("Edit", fornecedorVM);
         }
 
@@ -168,21 +168,32 @@ namespace ERP_JOSEREIS.Controllers
         //
         // GET: /Fornecedor/Delete/5
 
-/*        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(int id = 0)
         {
-            Fornecedor fornecedor = db.Fornecedores.Include(f => f.Pessoa).Single(f => f.IdPessoa == id);
+            Fornecedor fornecedor = db.Fornecedores.Find(id);
+
             if (fornecedor == null)
             {
                 return HttpNotFound();
             }
-            return View(fornecedor);
+
+
+            try
+            {
+                PessoaFisica pf = db.PessoasFisicas.Find(id);
+                return View(new FornecedorViewModel(fornecedor, pf));
+
+            }catch(Exception ex)
+            {
+                PessoaJuridica pj = db.PessoasJuridicas.Find(id);
+                return View(new FornecedorViewModel(fornecedor, pj));
+            }
         }
-*/
+
         //
         // POST: /Fornecedor/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Fornecedor fornecedor = db.Fornecedores.Find(id);

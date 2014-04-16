@@ -4,7 +4,7 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm("EditPJ", "Fornecedor"))
+@using (Html.BeginForm("Edit", "Fornecedor"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -89,6 +89,3 @@
         </p>
     </fieldset>
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

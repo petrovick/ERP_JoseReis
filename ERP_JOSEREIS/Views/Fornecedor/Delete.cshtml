@@ -1,4 +1,4 @@
-﻿@model ERP_JOSEREIS.Models.Fornecedor
+﻿@model ERP_JOSEREIS.ViewModels.FornecedorViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -10,8 +10,17 @@
 <fieldset>
     <legend>Fornecedor</legend>
 </fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+@if(Model.pessoaFisica != null)
+{
+    @Html.Partial("DetailsPF")
+}
+else
+{
+    @Html.Partial("DetailsPJ")
+}
+
+@using (Html.BeginForm())
+{
     <p>
         <input type="submit" value="Delete" /> |
         @Html.ActionLink("Back to List", "Index")

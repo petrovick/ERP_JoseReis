@@ -5,8 +5,22 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New PJ", "CreatePJ")
-    @Html.ActionLink("Create New PF", "CreatePF")
-    @Html.ActionLink("Details PF", "DetailsPF")
-    @Html.ActionLink("Details PJ", "DetailsPJ")
+    @Html.ActionLink("Create Fornecedor PF", "CreatePF")
+    @Html.ActionLink("Create Fornecedor PJ", "CreatePJ")
+
 </p>
+<table>
+    <tr>
+        <th>Nome</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.pessoa.Nome</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdFornecedor }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdFornecedor }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdFornecedor })</td>
+        </tr>
+    }
+</table>

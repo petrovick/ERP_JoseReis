@@ -1,57 +1,38 @@
-﻿@model IEnumerable<ERP_JOSEREIS.Models.PessoaFisica>
+﻿@model ERP_JOSEREIS.ViewModels.FornecedorViewModel
+
+<fieldset>
+    <legend>Pessoa Física</legend>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.pessoaFisica.Bairro)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.pessoaFisica.Bairro)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.pessoaFisica.Nome)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.pessoaFisica.Nome)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.pessoaFisica.RG)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.pessoaFisica.RG)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.pessoaFisica.TelefoneCelular)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.pessoaFisica.TelefoneCelular)
+        </div>
+}
+</fieldset>
 <p>
-    @Html.ActionLink("Nova Cliente PF", "CreatePF")
-    @Html.ActionLink("Nova Cliente PJ", "CreatePj")
+    <input type="submit" value="Delete" />
+    @Html.ActionLink("Back to list", "Index")
 </p>
-<table>
-    <tr></tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bairro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CEP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RG)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rua)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefoneCelular)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefoneComercial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefoneResidencial)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdPessoa }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdPessoa}) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdPessoa})
-            </td>
-        </tr>
-    }
-</table>

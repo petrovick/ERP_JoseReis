@@ -1,4 +1,4 @@
-﻿@model ERP_JOSEREIS.Models.Fornecedor
+﻿@model ERP_JOSEREIS.ViewModels.FornecedorViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -9,7 +9,12 @@
 <fieldset>
     <legend>Fornecedor</legend>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.IdFornecedor }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@if(Model.pessoaFisica != null)
+{
+    @Html.Partial("FornecedorPessoaFisica")
+}
+else
+{
+    @Html.Partial("FornecedorPessoaJuridica")
+}
