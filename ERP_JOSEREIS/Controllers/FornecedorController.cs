@@ -19,8 +19,7 @@ namespace ERP_JOSEREIS.Controllers
 
         public ActionResult Index()
         {
-            var fornecedores = db.Fornecedores.Include(f => f.pessoa);
-            return View(fornecedores.ToList());
+            return View(db.Fornecedores.Include(f => f.pessoa).ToList());
         }
 
         //
@@ -33,56 +32,34 @@ namespace ERP_JOSEREIS.Controllers
             {
                 return HttpNotFound();
             }
-            PessoaFisica pf = db.PessoasFisicas.Find(id);
-            FornecedorViewModel fornecedorVM;
-            if(pf != null)
+            try
             {
-                fornecedorVM = new FornecedorViewModel(fornecedor, pf);
+                PessoaFisica pf = db.PessoasFisicas.Find(id);
+                return View(new FornecedorViewModel(fornecedor, pf));
             }
-            else
+            catch(Exception ex)
             {
                 PessoaJuridica pj = db.PessoasJuridicas.Find(id);
-                fornecedorVM = new FornecedorViewModel(fornecedor, pj);
+                return View(new FornecedorViewModel(fornecedor, pj));
             }
-            return View(fornecedorVM);
-        }
-
-        public ActionResult DetailsPF()
-        {
-            IEnumerable<PessoaFisica> fornecedor = db.PessoasFisicas;
-            if(fornecedor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fornecedor);
-        }
-
-        public ActionResult DetailsPJ()
-        {
-            IEnumerable<PessoaJuridica> fornecedor = db.PessoasJuridicas;
-            if(fornecedor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fornecedor);
         }
 
         //
         // GET: /Fornecedor/Create
 
-        public ActionResult CreatePJ()
-        {
-            Fornecedor fornecedor = new Fornecedor();
-            PessoaJuridica pj = new PessoaJuridica();
-            var fornecedorVM = new FornecedorViewModel(fornecedor, pj);
-            return View("Edit", fornecedorVM);
-        }
-
         public ActionResult CreatePF()
         {
             Fornecedor fornecedor = new Fornecedor();
             PessoaFisica pf = new PessoaFisica();
-            var fornecedorVM = new FornecedorViewModel(fornecedor, pf);
+            FornecedorViewModel fornecedorVM = new FornecedorViewModel(fornecedor, pf);
+            return View("Edit", fornecedorVM);
+        }
+
+        public ActionResult CreatePJ()
+        {
+            Fornecedor fornecedor = new Fornecedor();
+            PessoaJuridica pj = new PessoaJuridica();
+            FornecedorViewModel fornecedorVM = new FornecedorViewModel(fornecedor, pj);
             return View("Edit", fornecedorVM);
         }
 
@@ -100,44 +77,47 @@ namespace ERP_JOSEREIS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdFornecedor = new SelectList(db.Pessoas, "IdPessoa", "Nome", fornecedor.IdFornecedor);
             return View(fornecedor);
         }
 
         //
         // GET: /Fornecedor/Edit/5
 
-        //public ActionResult Edit(int id = 0)
-        //{
-        //    Fornecedor fornecedor = db.Fornecedores.Find(id);
-        //    PessoaFisica pf;
-        //    PessoaJuridica pj;
-
-        //    FornecedorViewModel fornecedorVM;
-        //    if (fornecedor == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    try
-        //    {
-        //        pf = db.PessoasFisicas.Find(id);
-        //        fornecedorVM = new FornecedorViewModel(fornecedor, pf);
-        //        return View(fornecedorVM);
-        //    }catch(Exception ex)
-        //    {
-        //        pj = db.PessoasJuridicas.Find(id);
-        //        fornecedorVM = new FornecedorViewModel(fornecedor, pj);
-        //        return View(fornecedorVM);
-        //    }
-        //    ViewBag.IdFornecedor = new SelectList(db.Pessoas, "IdPessoa", "Nome", fornecedor.IdFornecedor);
-        //    return View(fornecedor);
-        //}
+        public ActionResult Edit(int id = 0)
+        {
+            Fornecedor fornecedor = db.Fornecedores.Find(id);
+            
+            try
+            {
+                var pessoa = db.PessoasFisicas.Find(id);
+                return View(new FornecedorViewModel(fornecedor, pessoa));
+            }
+            catch (Exception ex)
+            {
+                var pessoa = db.PessoasJuridicas.Find(id);
+                return View(new FornecedorViewModel(fornecedor, pessoa));
+            }
+        }
 
         //
         // POST: /Fornecedor/Edit/5
-
-        public ActionResult Edit(Fornecedor fornecedor, PessoaFisica pessoaFisica)
+        [HttpPost]
+        public ActionResult Edit(Fornecedor fornecedor)
         {
+            if (ModelState.IsValid)
+            {
+                db.Entry(fornecedor).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(fornecedor);
+        }
+
+        [HttpPost]
+        public ActionResult EditPF(Fornecedor fornecedor, PessoaFisica pessoaFisica)
+        {
+            pessoaFisica.DataCadastro = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 if (pessoaFisica.IdPessoa != 0)
@@ -155,14 +135,15 @@ namespace ERP_JOSEREIS.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            FornecedorViewModel fornecedorVM = new FornecedorViewModel(fornecedor, pessoaFisica);
+            FornecedorViewModel fornecedorVM = new FornecedorViewModel(fornecedor, pessoaJuridica);
             return View("Edit", fornecedorVM);
         }
-        
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EditPJ(Fornecedor fornecedor, PessoaJuridica pessoaJuridica)
         {
+            pessoaJuridica.DataCadastro = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 if (pessoaJuridica.IdPessoa != 0)
